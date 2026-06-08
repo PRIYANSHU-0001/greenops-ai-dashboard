@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import pandas as pd
 import joblib
 
-app = FastAPI(title="GreenOps API")
+app = FastAPI(title="GreenOps AI Dashboard API")
 
 df = pd.read_csv("data/cloud_usage_enriched.csv")
 model = joblib.load("model/co2e_model.pkl")
@@ -10,13 +10,11 @@ model = joblib.load("model/co2e_model.pkl")
 
 @app.get("/health")
 def health():
-    """Health check endpoint"""
     return {"status": "ok"}
 
 
 @app.get("/metrics/summary")
 def metrics_summary():
-    """Return KPI summary"""
 
     total_co2e = float(df["co2e_kg"].sum())
     total_cost = float(df["cost_usd"].sum())
@@ -43,7 +41,6 @@ def metrics_summary():
 
 @app.get("/metrics/daily")
 def metrics_daily():
-    """Daily CO2e trend"""
 
     daily = (
         df.groupby("date")["co2e_kg"]
@@ -54,9 +51,32 @@ def metrics_daily():
     return daily.to_dict(orient="records")
 
 
+@app.get("/metrics/team")
+def metrics_team():
+
+    team = (
+        df.groupby("team")["co2e_kg"]
+        .sum()
+        .reset_index()
+    )
+
+    return team.to_dict(orient="records")
+
+
+@app.get("/metrics/region")
+def metrics_region():
+
+    region = (
+        df.groupby("region")["co2e_kg"]
+        .sum()
+        .reset_index()
+    )
+
+    return region.to_dict(orient="records")
+
+
 @app.get("/forecast")
 def forecast():
-    """30-day forecast"""
 
     daily = (
         df.groupby("date")["co2e_kg"]
@@ -64,12 +84,11 @@ def forecast():
         .reset_index()
     )
 
-    last_value = daily["co2e_kg"].tail(30)
-
-    forecast_values = []
-
-    for value in last_value:
-        forecast_values.append(float(value))
+    forecast_values = (
+        daily["co2e_kg"]
+        .tail(30)
+        .tolist()
+    )
 
     return {
         "forecast": forecast_values
