@@ -119,7 +119,7 @@ Azure Blob Storage
 Cloud Usage Dataset
 
 Live API URL:
-[https://greenops-api-[rollnumber].azurewebsites.net](https://greenops-api-[rollnumber].azurewebsites.net)
+[https://greenops-api-2301010665.azurewebsites.net](https://greenops-api-2301010665.azurewebsites.net)
 
 Green Score:
 A / B / C / D / F (based on average daily CO2e)

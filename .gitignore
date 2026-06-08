@@ -1,2 +1,4 @@
 .env
 greenops-env/
+__pycache__/
+*.pyc
