@@ -118,8 +118,16 @@ Azure Blob Storage
 ↓
 Cloud Usage Dataset
 
-Live API URL:
-[https://greenops-api-2301010665.azurewebsites.net](https://greenops-api-2301010665.azurewebsites.net)
+## Live API
+
+Health Endpoint:
+https://greenops-api-2301010665-aweeg0hdfbbjhvad.centralindia-01.azurewebsites.net/health
+
+Swagger Documentation:
+https://greenops-api-2301010665-aweeg0hdfbbjhvad.centralindia-01.azurewebsites.net/docs
+
+Green Score Endpoint:
+https://greenops-api-2301010665-aweeg0hdfbbjhvad.centralindia-01.azurewebsites.net/green-score
 
 Green Score:
 A / B / C / D / F (based on average daily CO2e)
