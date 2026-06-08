@@ -26,4 +26,18 @@ Different resources consume different amounts of energy. Using separate emission
 
 The most carbon-intensive service type in the dataset is Networking.
 
+# Hurdle 2 Concept Check
+
+## What is the difference between Azure Blob Storage and Azure SQL Database? When would you choose each?
+
+Azure Blob Storage is used for storing files such as CSVs, images, videos, backups, and model artifacts. Azure SQL Database is used for structured relational data that requires querying with SQL. Blob Storage is best for large files, while SQL Database is best for transactional and structured application data.
+
+## What is LRS replication and what are its limitations vs GRS?
+
+LRS (Locally Redundant Storage) keeps three copies of data within a single Azure data center. It is cheaper but does not protect against regional outages. GRS (Geo-Redundant Storage) replicates data to another geographic region, providing better disaster recovery.
+
+## Why is it a security risk to hardcode a connection string in source code?
+
+Hardcoding a connection string can expose sensitive credentials if the code is shared or pushed to GitHub. Attackers could gain access to cloud resources. Environment variables or .env files provide a safer way to store secrets.
+
 
