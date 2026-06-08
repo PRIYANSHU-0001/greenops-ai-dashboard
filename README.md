@@ -54,4 +54,17 @@ Lag features use past values to predict future values. Time-series patterns are 
 
 Linear Regression assumes a linear relationship between features and the target variable. It may not capture complex seasonal patterns, sudden spikes, or nonlinear trends in carbon emissions, which can reduce forecasting accuracy.
 
+# Hurdle 4 Concept Check
+
+## What is REST and why is it the standard for building APIs?
+
+REST is an architectural style for building web APIs using standard HTTP methods. It is widely used because it is simple, scalable, and works across different platforms and programming languages.
+
+## What is the difference between a GET and a POST request? Which would you use to submit new billing data?
+
+GET is used to retrieve data from a server, while POST is used to send or create new data. To submit new billing data, a POST request should be used.
+
+## Why run the API and dashboard as two separate processes rather than one combined script?
+
+Separating the API and dashboard improves scalability, maintainability, and flexibility. The backend can serve multiple clients while the dashboard focuses only on visualization.
 
