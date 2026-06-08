@@ -1,11 +1,22 @@
+import os
 from fastapi import FastAPI
 import pandas as pd
 import joblib
 
 app = FastAPI(title="GreenOps AI Dashboard API")
 
-df = pd.read_csv("data/cloud_usage_enriched.csv")
-model = joblib.load("model/co2e_model.pkl")
+DATASET_PATH = os.getenv(
+    "DATASET_PATH",
+    "data/cloud_usage_enriched.csv"
+)
+
+MODEL_PATH = os.getenv(
+    "MODEL_PATH",
+    "model/co2e_model.pkl"
+)
+
+df = pd.read_csv(DATASET_PATH)
+model = joblib.load(MODEL_PATH)
 
 
 @app.get("/health")
@@ -92,4 +103,47 @@ def forecast():
 
     return {
         "forecast": forecast_values
+    }
+    
+@app.get("/green-score")
+def green_score():
+
+    daily = (
+        df.groupby("date")["co2e_kg"]
+        .sum()
+        .reset_index()
+    )
+
+    avg_daily = daily["co2e_kg"].mean()
+
+    if avg_daily < 2:
+        grade = "A"
+        action = "Excellent — no action needed"
+        gate = "PASS"
+
+    elif avg_daily < 5:
+        grade = "B"
+        action = "Good — minor optimisation advised"
+        gate = "PASS"
+
+    elif avg_daily < 10:
+        grade = "C"
+        action = "Moderate — review VM sizing"
+        gate = "PASS"
+
+    elif avg_daily < 20:
+        grade = "D"
+        action = "Poor — immediate rightsizing required"
+        gate = "WARNING"
+
+    else:
+        grade = "F"
+        action = "Critical — pipeline soft gate triggered"
+        gate = "BLOCKED"
+
+    return {
+        "grade": grade,
+        "avg_daily_co2e": round(float(avg_daily), 2),
+        "action": action,
+        "gate": gate
     }

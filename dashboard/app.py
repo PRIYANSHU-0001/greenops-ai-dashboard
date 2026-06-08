@@ -42,6 +42,30 @@ summary = requests.get(
     "http://127.0.0.1:8000/metrics/summary"
 ).json()
 
+green_score = requests.get(
+    "http://127.0.0.1:8000/green-score"
+).json()
+
+st.markdown("## ♻️ Green Score")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.metric(
+        "Grade",
+        green_score["grade"]
+    )
+
+with col2:
+    st.metric(
+        "Pipeline Gate",
+        green_score["gate"]
+    )
+
+st.info(
+    green_score["action"]
+)
+
 # KPI Cards
 col1, col2, col3, col4 = st.columns(4)
 
