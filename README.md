@@ -68,3 +68,60 @@ GET is used to retrieve data from a server, while POST is used to send or create
 
 Separating the API and dashboard improves scalability, maintainability, and flexibility. The backend can serve multiple clients while the dashboard focuses only on visualization.
 
+# Hurdle 5 Concept Check
+
+## 1. What is the 'Shift-Left' principle in DevOps, and how does the Green Score apply it to sustainability?
+
+The Shift-Left principle means identifying and fixing issues as early as possible in the software development lifecycle instead of waiting until deployment or production. It helps reduce risks, costs, and rework.
+
+The Green Score applies this concept to sustainability by evaluating the carbon impact of a project before deployment. If emissions are too high, developers receive recommendations to optimize infrastructure before releasing the application. This makes sustainability checks a part of the development pipeline.
+
+---
+
+## 2. What is Azure App Service and how is it different from running on a VM (IaaS)?
+
+Azure App Service is a Platform as a Service (PaaS) offering that allows developers to deploy and run web applications without managing servers, operating systems, or infrastructure.
+
+A Virtual Machine (IaaS) provides complete control over the operating system, networking, and server configuration, but it requires manual management, updates, and maintenance.
+
+App Service is easier to deploy and manage, while VMs provide more flexibility and control.
+
+---
+
+## 3. If a project scores F, what specific infrastructure changes would you recommend first?
+
+If a project receives an F grade, the first improvements should focus on reducing unnecessary resource consumption:
+
+* Rightsize oversized virtual machines.
+* Enable autoscaling to match workload demand.
+* Remove idle or unused cloud resources.
+* Optimize storage usage and delete unnecessary data.
+* Reduce excessive data transfer between services.
+* Move workloads to more energy-efficient regions.
+* Use serverless or managed services where possible.
+* Improve application efficiency to reduce compute usage.
+
+These changes can significantly lower carbon emissions and improve the sustainability score.
+
+
+Architecture
+
+User
+↓
+Streamlit Dashboard
+↓
+FastAPI Backend
+↓
+Forecast Model (Scikit-Learn)
+↓
+Azure Blob Storage
+↓
+Cloud Usage Dataset
+
+Live API URL:
+[https://greenops-api-[rollnumber].azurewebsites.net](https://greenops-api-[rollnumber].azurewebsites.net)
+
+Green Score:
+A / B / C / D / F (based on average daily CO2e)
+
+
