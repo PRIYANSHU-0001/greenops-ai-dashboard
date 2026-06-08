@@ -40,4 +40,18 @@ LRS (Locally Redundant Storage) keeps three copies of data within a single Azure
 
 Hardcoding a connection string can expose sensitive credentials if the code is shared or pushed to GitHub. Attackers could gain access to cloud resources. Environment variables or .env files provide a safer way to store secrets.
 
+# Hurdle 3 Concept Check
+
+## What is RMSE and what does a lower value indicate?
+
+RMSE (Root Mean Squared Error) measures the average prediction error of a model. A lower RMSE indicates that the model's predictions are closer to the actual values and therefore more accurate.
+
+## Why do we create lag features for time-series prediction instead of using the date directly?
+
+Lag features use past values to predict future values. Time-series patterns are usually dependent on historical observations, so lag features provide useful information that dates alone cannot capture.
+
+## What are the risks of using Linear Regression for this task? What assumptions does it make?
+
+Linear Regression assumes a linear relationship between features and the target variable. It may not capture complex seasonal patterns, sudden spikes, or nonlinear trends in carbon emissions, which can reduce forecasting accuracy.
+
 
